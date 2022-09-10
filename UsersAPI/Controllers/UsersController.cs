@@ -1,7 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,7 @@ using WebApi.Helpers;
 namespace UsersAPI.Controllers
 {
     [ApiController]
-    //[Authorize]
+    [Authorize]
     [Route("/v1/Users")]
     public class UsersController : ODataController
     {
@@ -39,7 +38,6 @@ namespace UsersAPI.Controllers
             if (user == null || string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.Surname) || string.IsNullOrEmpty(user.Email))
                 return BadRequest();
 
-            user.Id = Guid.NewGuid().ToString();
             _context.Users.Add(_mapper.Map<User>(user));
             _context.SaveChanges();
 
@@ -47,7 +45,7 @@ namespace UsersAPI.Controllers
         }
 
         [HttpDelete(Name = "DeleteUser")]
-        public IActionResult DeleteSingle([FromODataUri] string? key)
+        public IActionResult DeleteSingle([FromQuery] string key)
         {
             var userToDelete = _context.Users.Where(u => u.Id == key);
             _context.RemoveRange(userToDelete);

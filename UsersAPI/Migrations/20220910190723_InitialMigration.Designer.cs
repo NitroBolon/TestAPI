@@ -12,8 +12,8 @@ using WebApi.Helpers;
 namespace UsersAPI.Migrations
 {
     [DbContext(typeof(UsersContext))]
-    [Migration("20220910085254_AddUserPropertiesTable")]
-    partial class AddUserPropertiesTable
+    [Migration("20220910190723_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,8 +26,9 @@ namespace UsersAPI.Migrations
 
             modelBuilder.Entity("UsersAPI.Models.User", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
@@ -61,8 +62,10 @@ namespace UsersAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId1")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ValueDateTime")
                         .HasColumnType("datetime2");
@@ -75,7 +78,7 @@ namespace UsersAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("UserProperties");
                 });
@@ -84,7 +87,7 @@ namespace UsersAPI.Migrations
                 {
                     b.HasOne("UsersAPI.Models.User", "User")
                         .WithMany("UserProperties")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
