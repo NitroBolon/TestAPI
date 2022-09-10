@@ -1,21 +1,18 @@
-using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using UsersAPI;
-using WebApi.Helpers;
+using TasksAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy());
+
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 {
     var services = builder.Services;
-    services.AddDbContext<UsersContext>();
     services.AddSwaggerGen((config) =>
     {
         config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
@@ -58,7 +55,7 @@ builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
         options.Authority = "https://localhost:5001";
-        options.Audience = "users.api";
+        options.Audience = "tasks.api";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateAudience = false
@@ -76,7 +73,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

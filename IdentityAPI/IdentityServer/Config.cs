@@ -14,6 +14,7 @@ public static class Config
         new ApiScope[]
             { 
                 new ApiScope(name: "users.api", displayName: "UsersAPI"),
+                new ApiScope(name: "tasks.api", displayName: "TasksAPI"),
             };
 
     public static IEnumerable<Client> Clients =>
@@ -28,6 +29,16 @@ public static class Config
                     new Secret("apitestusers".Sha256())
                 },
                 AllowedScopes = { "users.api" }
+            },
+            new Client
+            {
+                ClientId = "test.superadmin",
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientSecrets =
+                {
+                    new Secret("apisupertest".Sha256())
+                },
+                AllowedScopes = { "tasks.api", "users.api" }
             },
             new Client
             {

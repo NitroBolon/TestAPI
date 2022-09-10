@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthCli", "AuthCli\AuthCli.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersAPI", "UsersAPI\UsersAPI.csproj", "{9FD3CF0C-8ABF-434D-8585-090B40E810CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksAPI", "TasksAPI\TasksAPI.csproj", "{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9FD3CF0C-8ABF-434D-8585-090B40E810CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FD3CF0C-8ABF-434D-8585-090B40E810CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FD3CF0C-8ABF-434D-8585-090B40E810CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

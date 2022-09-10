@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-// Retrieve UsersAPI token
+// Retrieve token
 
 using IdentityModel.Client;
 
@@ -16,9 +16,9 @@ var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCr
 {
     Address = disco.TokenEndpoint,
 
-    ClientId = "test.usersapi",
-    ClientSecret = "apitestusers",
-    Scope = "users.api"
+    ClientId = "test.superadmin",
+    ClientSecret = "apisupertest",
+    Scope = "users.api tasks.api"
 });
 
 if (tokenResponse.IsError)

@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace UsersAPI
+namespace TasksAPI
 {
     public class ODataOperationFilter : IOperationFilter
     {
