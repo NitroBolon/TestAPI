@@ -8,6 +8,7 @@ var disco = await client.GetDiscoveryDocumentAsync("https://localhost:5001");
 if (disco.IsError)
 {
     Console.WriteLine(disco.Error);
+    Console.ReadKey();
     return;
 }
 
@@ -23,7 +24,10 @@ var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCr
 if (tokenResponse.IsError)
 {
     Console.WriteLine(tokenResponse.Error);
+    Console.ReadKey();
     return;
 }
 
 Console.WriteLine(tokenResponse.AccessToken);
+
+Console.ReadKey();
