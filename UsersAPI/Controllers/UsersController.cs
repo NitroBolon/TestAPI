@@ -29,11 +29,11 @@ namespace UsersAPI.Controllers
         [HttpGet(Name = "GetAllUsers")]
         public IEnumerable<UserDto> Get()
         {
-            return _context.Users.AsNoTracking();
+            return _context.Users.AsNoTracking().Select(u => _mapper.Map<UserDto>(u));
         }
 
         [HttpPost(Name = "PostUser")]
-        public IActionResult Post([FromBody] UserDto user)
+        public IActionResult Post([FromBody] UserPostDto user)
         {
             if (user == null || string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.Surname) || string.IsNullOrEmpty(user.Email))
                 return BadRequest();

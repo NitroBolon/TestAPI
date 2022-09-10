@@ -3,16 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UsersAPI.Models
 {
-    public class UserDto
+    public class UserPostDto
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
-        public string? Id { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? Email { get; set; }
         public string? Bio { get; set; }
         public DateTime BirthDate { get; set; }
+    }
+
+    public class UserDto : UserPostDto
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public string? Id { get; set; }
     }
 
     public class User : UserDto

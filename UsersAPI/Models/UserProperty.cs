@@ -2,15 +2,20 @@
 
 namespace UsersAPI.Models
 {
-    public class UserPropertyDto
+    public class UserPropertyPostDto
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public string? UserId { get; set; }
         public string? Key { get; set; }
         public string? ValueString { get; set; }
-        public long ValueInt { get; set; }
-        public DateTime ValueDateTime { get; set; }
+        public long? ValueInt { get; set; }
+        public bool? ValueBool { get; set; }
+        public DateTime? ValueDateTime { get; set; }
+    }
+
+    public class UserPropertyDto : UserPropertyPostDto
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
     }
 
     public class UserProperty : UserPropertyDto
