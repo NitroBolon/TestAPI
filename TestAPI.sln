@@ -5,11 +5,15 @@ VisualStudioVersion = 17.1.32120.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityAPI\IdentityServer\IdentityServer.csproj", "{3094D9BC-B634-4A54-8CA8-7885AC864038}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthCli", "AuthCli\AuthCli.csproj", "{8427BABC-ED5F-4FF6-BCAC-DA70DD29C694}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthCli", "Utilities\AuthCli\AuthCli.csproj", "{8427BABC-ED5F-4FF6-BCAC-DA70DD29C694}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersAPI", "UsersAPI\UsersAPI.csproj", "{9FD3CF0C-8ABF-434D-8585-090B40E810CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersAPI", "Services\UsersAPI\UsersAPI.csproj", "{9FD3CF0C-8ABF-434D-8585-090B40E810CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksAPI", "TasksAPI\TasksAPI.csproj", "{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TasksAPI", "Services\TasksAPI\TasksAPI.csproj", "{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{86339B68-E8BE-40DD-84FE-2B085D7D01FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{45F1EE1C-0F1C-4458-BBB5-EEABB7F1E63E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +40,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8427BABC-ED5F-4FF6-BCAC-DA70DD29C694} = {45F1EE1C-0F1C-4458-BBB5-EEABB7F1E63E}
+		{9FD3CF0C-8ABF-434D-8585-090B40E810CF} = {86339B68-E8BE-40DD-84FE-2B085D7D01FB}
+		{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1} = {86339B68-E8BE-40DD-84FE-2B085D7D01FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9DF2D84B-13FB-4155-964F-C9C0D4002AFF}
