@@ -17,6 +17,7 @@ namespace UsersAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("user")
                 .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -45,7 +46,7 @@ namespace UsersAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", "user");
                 });
 
             modelBuilder.Entity("UsersAPI.Models.UserProperty", b =>
@@ -79,7 +80,7 @@ namespace UsersAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserProperties");
+                    b.ToTable("UserProperties", "user");
                 });
 
             modelBuilder.Entity("UsersAPI.Models.UserProperty", b =>

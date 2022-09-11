@@ -12,13 +12,14 @@ using UsersAPI.Context;
 namespace UsersAPI.Migrations
 {
     [DbContext(typeof(UsersContext))]
-    [Migration("20220910190723_InitialMigration")]
+    [Migration("20220911134304_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("user")
                 .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -26,9 +27,9 @@ namespace UsersAPI.Migrations
 
             modelBuilder.Entity("UsersAPI.Models.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
@@ -47,7 +48,7 @@ namespace UsersAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", "user");
                 });
 
             modelBuilder.Entity("UsersAPI.Models.UserProperty", b =>
@@ -62,15 +63,16 @@ namespace UsersAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("UserId1")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<bool?>("ValueBool")
+                        .HasColumnType("bit");
 
-                    b.Property<DateTime>("ValueDateTime")
+                    b.Property<DateTime?>("ValueDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("ValueInt")
+                    b.Property<long?>("ValueInt")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ValueString")
@@ -78,16 +80,16 @@ namespace UsersAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("UserProperties");
+                    b.ToTable("UserProperties", "user");
                 });
 
             modelBuilder.Entity("UsersAPI.Models.UserProperty", b =>
                 {
                     b.HasOne("UsersAPI.Models.User", "User")
                         .WithMany("UserProperties")
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

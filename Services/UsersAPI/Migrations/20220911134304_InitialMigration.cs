@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -8,11 +9,15 @@ namespace UsersAPI.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "user");
+
             migrationBuilder.CreateTable(
                 name: "Users",
+                schema: "user",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(100)", nullable: false, defaultValueSql: "newid()"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false, defaultValueSql: "newid()"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -26,41 +31,46 @@ namespace UsersAPI.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserProperties",
+                schema: "user",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId1 = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Key = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ValueString = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ValueInt = table.Column<long>(type: "bigint", nullable: false),
-                    ValueDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ValueInt = table.Column<long>(type: "bigint", nullable: true),
+                    ValueBool = table.Column<bool>(type: "bit", nullable: true),
+                    ValueDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserProperties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserProperties_Users_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_UserProperties_Users_UserId",
+                        column: x => x.UserId,
+                        principalSchema: "user",
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProperties_UserId1",
+                name: "IX_UserProperties_UserId",
+                schema: "user",
                 table: "UserProperties",
-                column: "UserId1");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserProperties");
+                name: "UserProperties",
+                schema: "user");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Users",
+                schema: "user");
         }
     }
 }

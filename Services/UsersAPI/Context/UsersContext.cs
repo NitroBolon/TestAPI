@@ -19,6 +19,8 @@ public class UsersContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema("user");
+
         modelBuilder.Entity<UserProperty>()
             .HasOne(p => p.User)
             .WithMany(b => b.UserProperties);

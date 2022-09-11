@@ -9,8 +9,12 @@ namespace TasksAPI.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "task");
+
             migrationBuilder.CreateTable(
                 name: "TaskStates",
+                schema: "task",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -27,9 +31,10 @@ namespace TasksAPI.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Tasks",
+                schema: "task",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(100)", nullable: false, defaultValueSql: "newid()"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false, defaultValueSql: "newid()"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AssigneeId = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -38,7 +43,7 @@ namespace TasksAPI.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Type = table.Column<int>(type: "int", nullable: true),
                     StateId = table.Column<long>(type: "bigint", nullable: true),
-                    ParentId = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    ParentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TenantId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -47,22 +52,26 @@ namespace TasksAPI.Migrations
                     table.ForeignKey(
                         name: "FK_Tasks_Tasks_ParentId",
                         column: x => x.ParentId,
+                        principalSchema: "task",
                         principalTable: "Tasks",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Tasks_TaskStates_StateId",
                         column: x => x.StateId,
+                        principalSchema: "task",
                         principalTable: "TaskStates",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_ParentId",
+                schema: "task",
                 table: "Tasks",
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_StateId",
+                schema: "task",
                 table: "Tasks",
                 column: "StateId");
         }
@@ -70,10 +79,12 @@ namespace TasksAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Tasks",
+                schema: "task");
 
             migrationBuilder.DropTable(
-                name: "TaskStates");
+                name: "TaskStates",
+                schema: "task");
         }
     }
 }
