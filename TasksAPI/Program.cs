@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using TasksAPI.Context;
 using TasksAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 {
     var services = builder.Services;
+    services.AddDbContext<TasksContext>();
     services.AddSwaggerGen((config) =>
     {
         config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
@@ -53,10 +55,15 @@ builder.Services.AddSwaggerGen();
     //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 }
 
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
     {
         options.Authority = "https://localhost:5001";
+        options.RequireHttpsMetadata = false;
         options.Audience = "tasks.api";
         options.TokenValidationParameters = new TokenValidationParameters
         {

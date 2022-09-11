@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using UsersAPI;
-using WebApi.Helpers;
+using UsersAPI.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,10 +55,15 @@ builder.Services.AddSwaggerGen();
     //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 }
 
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
     {
         options.Authority = "https://localhost:5001";
+        options.RequireHttpsMetadata = false;
         options.Audience = "users.api";
         options.TokenValidationParameters = new TokenValidationParameters
         {

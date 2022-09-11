@@ -17,6 +17,27 @@ public static class Config
                 new ApiScope(name: "tasks.api", displayName: "TasksAPI"),
             };
 
+    public static IEnumerable<ApiResource> ApiResources =>
+        new ApiResource[]
+        {
+            new ApiResource("users.api")
+            {
+                Scopes = { "users.api" },
+                ApiSecrets =
+                {
+                    new Secret("apitestusers".Sha256())
+                }
+            },
+            new ApiResource("tasks.api")
+            {
+                Scopes = { "tasks.api" },
+                ApiSecrets =
+                {
+                    new Secret("apitesttasks".Sha256())
+                }
+            }
+        };
+
     public static IEnumerable<Client> Clients =>
         new Client[]
         { 

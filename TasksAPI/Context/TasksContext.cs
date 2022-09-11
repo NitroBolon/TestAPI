@@ -1,13 +1,13 @@
-﻿namespace UsersAPI.Context;
+﻿namespace TasksAPI.Context;
 
 using Microsoft.EntityFrameworkCore;
-using UsersAPI.Models;
+using TasksAPI.Models;
 
-public class UsersContext : DbContext
+public class TasksContext : DbContext
 {
     protected readonly IConfiguration Configuration;
 
-    public UsersContext(IConfiguration configuration)
+    public TasksContext(IConfiguration configuration)
     {
         Configuration = configuration;
     }
@@ -19,11 +19,10 @@ public class UsersContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<UserProperty>()
-            .HasOne(p => p.User)
-            .WithMany(b => b.UserProperties);
+        modelBuilder.Entity<Task>()
+            .HasOne(p => p.State);
     }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<UserProperty> UserProperties { get; set; }
+    public DbSet<Task> Tasks { get; set; }
+    public DbSet<TaskState> TaskStates { get; set; }
 }

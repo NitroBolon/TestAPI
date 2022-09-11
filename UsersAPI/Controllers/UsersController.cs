@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.EntityFrameworkCore;
 using UsersAPI.Models;
-using WebApi.Helpers;
+using UsersAPI.Context;
 
 namespace UsersAPI.Controllers
 {
