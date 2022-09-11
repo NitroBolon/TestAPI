@@ -61,7 +61,7 @@ builder.Services.AddAuthentication("Bearer")
         options.Audience = "users.api";
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateAudience = false
+            ValidateAudience = true
         };
     });
 

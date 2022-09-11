@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using TasksAPI;
@@ -5,8 +7,8 @@ using TasksAPI;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddControllers().AddOData(options => options.Select().Filter().OrderBy());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,8 +19,8 @@ builder.Services.AddSwaggerGen();
     {
         config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
         {
-            Title = "UsersAPI",
-            Description = "API returning users and their properties.",
+            Title = "TasksAPI",
+            Description = "API returning tasks and their properties.",
             Version = "v1"
         });
         config.OperationFilter<ODataOperationFilter>();
@@ -58,7 +60,7 @@ builder.Services.AddAuthentication("Bearer")
         options.Audience = "tasks.api";
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateAudience = false
+            ValidateAudience = true
         };
     });
 
@@ -73,6 +75,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
