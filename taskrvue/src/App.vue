@@ -1,6 +1,11 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <a-layout>
+    <a-layout-header>Header</a-layout-header>
+    <a-layout-content style="min-height: 1000px">
+      <img alt="Vue logo" src="./assets/logo.png">
+      <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/></a-layout-content>
+    <a-layout-footer>Footer</a-layout-footer>
+  </a-layout>
 </template>
 
 <script lang="ts">
@@ -22,6 +27,20 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.ant-layout-header {
+  background: rgb(139, 38, 38) !important;
+  color: white !important;
+  position: sticky;
+  top: 0;
+}
+.ant-layout-content {
+  
+}
+.ant-layout-footer {
+  background: rgb(61, 61, 61) !important;
+  color: white !important;
+  position: sticky;
+  bottom: 0;
 }
 </style>

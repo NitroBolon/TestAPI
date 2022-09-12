@@ -4,31 +4,18 @@
             Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationvue">https://aka.ms/jspsintegrationvue</a> for more details.
         </div>
 
-        <div v-if="post" class="content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="forecast in post" :key="forecast.date">
-                        <td>{{ forecast.date }}</td>
-                        <td>{{ forecast.temperatureC }}</td>
-                        <td>{{ forecast.temperatureF }}</td>
-                        <td>{{ forecast.summary }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <a-table :dataSource="post" :columns="columns"/>
     </div>
 </template>
 
 <script lang="ts">
     import { defineComponent } from "vue";
+
+    type Columns = {
+        title: string,
+        dataIndex: string,
+        key: string
+    }[];
 
     type Forecasts = {
         date: string,
@@ -39,14 +26,37 @@
 
     interface Data {
         loading: boolean,
-        post: null | Forecasts
+        post: null | Forecasts,
+        columns: null | Columns
     }
 
     export default defineComponent({
         data(): Data {
             return {
                 loading: false,
-                post: null
+                post: null,
+                columns: [
+                    {
+                      title: 'Date',
+                      dataIndex: 'date',
+                      key: 'date',
+                    },
+                    {
+                      title: 'Temperature (C)',
+                      dataIndex: 'temperatureC',
+                      key: 'temperatureC',
+                    },
+                    {
+                      title: 'Temperature (F)',
+                      dataIndex: 'temperatureF',
+                      key: 'temperatureF',
+                    },
+                    {
+                      title: 'Summary',
+                      dataIndex: 'summary',
+                      key: 'summary',
+                    },
+                ]
             };
         },
         created() {
