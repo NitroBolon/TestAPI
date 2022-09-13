@@ -1,22 +1,30 @@
 <template>
   <a-layout>
-    <a-layout-header>Header</a-layout-header>
+    <a-layout-header>
+      <HeaderTop></HeaderTop>
+    </a-layout-header>
     <a-layout-content style="min-height: 1000px">
       <img alt="Vue logo" src="./assets/logo.png">
       <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/></a-layout-content>
-    <a-layout-footer>Footer</a-layout-footer>
+    <a-layout-footer>
+      <FooterBottom></FooterBottom>
+    </a-layout-footer>
   </a-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
+import HeaderTop from './components/general/HeaderTop.vue';
+import FooterBottom from './components/general/FooterBottom.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+    HeaderTop,
+    FooterBottom
+}
 });
 </script>
 
