@@ -1,12 +1,12 @@
 <template>
     <div class="footer">
-        <!-- <a-row>
+        <a-row class="section-footer">
             <a-col :span="3"></a-col>
             <a-col :span="3"></a-col>
             <a-col :span="12">Register today! Best task management tool ever!</a-col>
             <a-col :span="3"></a-col>
             <a-col :span="3"></a-col>
-        </a-row> -->
+        </a-row>
         <CustomParticles class="particles"></CustomParticles>
     </div>
 </template>
@@ -69,6 +69,17 @@ export default defineComponent({
     }
 
     .particles {
-        z-index: -1;
+        position: relative;
+    }
+
+    .section-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+        width: 100%;
+        height: 45px;
+        z-index: 5; 
+        position: absolute;
     }
 </style>
