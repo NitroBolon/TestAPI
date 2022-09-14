@@ -15,18 +15,18 @@ export default {
                 },
                 particles: {
                     links: {
-                        distance: 10, // maximum distance for linking the particles
-                        enable: true, // enabling this will make the particles linked together
+                        distance: 10,
+                        enable: true,
                     },
                     move: {
-                        enable: true, // enabling this will make particles move in the canvas
-                        speed: { min: 1, max: 5 }, // using a range in speed value will make particles move in a random speed between min/max values, each particle has its own value, it won't change over time by default
+                        enable: true,
+                        speed: { min: 1, max: 3 },
                     },
                     opacity: {
-                        value: { min: 0.3, max: 0.7 }, // using a different opacity, to have some semitransparent effects
+                        value: { min: 0.1, max: 0.5 },
                     },
                     size: {
-                        value: { min: 1, max: 3 }, // let's randomize the particles size a bit
+                        value: { min: 1, max: 3 },
                     },
                 },
             }
@@ -42,6 +42,6 @@ export default {
 
 <style>
     #tsparticles {
-        height: 10px;
+        height: 50px;
     }
 </style>

@@ -48,6 +48,8 @@ export default defineComponent({
 .ant-layout-footer {
   background: rgb(61, 61, 61) !important;
   color: white !important;
+  padding: 0 !important;
+  height: 60px;
   position: sticky;
   bottom: 0;
 }
