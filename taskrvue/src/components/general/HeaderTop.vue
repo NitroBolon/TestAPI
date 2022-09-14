@@ -7,23 +7,35 @@
             <a-dropdown>
                 <template #overlay>
                     <a-menu @mouseover="handleMenuOver" @mouseleave="handleMenuLeave"  @click="handleMenuClick">
-                        <a-menu-item key="1">Log in</a-menu-item>
-                        <a-menu-item key="2">Sign in</a-menu-item>
+                        <a-menu-item key="1" @click="showModal1">Log in</a-menu-item>
+                        <a-menu-item key="2" @click="showModal2">Sign up</a-menu-item>
                     </a-menu>
                 </template>
                 <a-button type="text">
-                    Log in
+                    Your dashboard
                     <DownOutlined />
                 </a-button>
             </a-dropdown>
         </a-col>
         <a-col :span="3"></a-col>
     </a-row>
+    <a-modal v-model:visible="visible" title="Sign in or register new dashboard" footer="Remember to keep your credentials safe!" width="50%">
+        <a-tabs v-model:activeKey="activeKey">
+            <a-tab-pane key="1" tab="Log in">
+                <LoginInput></LoginInput>
+            </a-tab-pane>
+            <a-tab-pane key="2" tab="Register" force-render>
+                <RegisterInput></RegisterInput>
+            </a-tab-pane>
+        </a-tabs>
+    </a-modal>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import type { MenuProps } from 'ant-design-vue';
+import LoginInput from '../../components/auth/LoginInput.vue';
+import RegisterInput from '../../components/auth/RegisterInput.vue';
 
 interface Data {
     loading: boolean,
@@ -31,6 +43,10 @@ interface Data {
 }
 
 export default defineComponent({
+    components: {
+        LoginInput,
+        RegisterInput
+    },
     data(): Data {
         return {
             loading: false,
@@ -46,6 +62,8 @@ export default defineComponent({
     methods: {
     },
     setup() {
+        const visible = ref<boolean>(false);
+        const activeKey = ref('2');
         const handleMenuClick: MenuProps['onClick'] = e => {
             console.log('click', e);
         };
@@ -55,10 +73,22 @@ export default defineComponent({
         const handleMenuOver: MenuProps['onClick'] = e => {
             console.log('click', e);
         };
+        const showModal1 = () => {
+            activeKey.value = '1';
+            visible.value = true;
+        };
+        const showModal2 = () => {
+            activeKey.value = '2';
+            visible.value = true;
+        };
         return {
             handleMenuLeave,
             handleMenuClick,
             handleMenuOver,
+            visible,
+            activeKey,
+            showModal1,
+            showModal2
         };
     },
 });
