@@ -15,6 +15,8 @@ public static class Config
             { 
                 new ApiScope(name: "users.api", displayName: "UsersAPI"),
                 new ApiScope(name: "tasks.api", displayName: "TasksAPI"),
+                new ApiScope(name: "tenants.api", displayName: "TenantsAPI"),
+                new ApiScope(name: "licenses.api", displayName: "LicensesAPI"),
             };
 
     public static IEnumerable<ApiResource> ApiResources =>
@@ -34,6 +36,22 @@ public static class Config
                 ApiSecrets =
                 {
                     new Secret("apitesttasks".Sha256())
+                }
+            },
+            new ApiResource("tenants.api")
+            {
+                Scopes = { "tenants.api" },
+                ApiSecrets =
+                {
+                    new Secret("apitesttenants".Sha256())
+                }
+            },
+            new ApiResource("licenses.api")
+            {
+                Scopes = { "licenses.api" },
+                ApiSecrets =
+                {
+                    new Secret("apitestlicenses".Sha256())
                 }
             }
         };
@@ -59,7 +77,7 @@ public static class Config
                 {
                     new Secret("apisupertest".Sha256())
                 },
-                AllowedScopes = { "tasks.api", "users.api" }
+                AllowedScopes = { "tasks.api", "users.api", "tenants.api", "licenses.api" }
             },
             new Client
             {

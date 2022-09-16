@@ -15,3 +15,12 @@ Simple solution for testing purposes. It's meant to become simple development fr
 5. Use API with Bearer auth token
 
 Currently taskr (services too tbh) is configured to work without logging in, when all issues will be resolved you'll need to register and use some test accounts.
+
+# Launch configuration
+1. taskr Vue App - https://localhost:5002
+2. taskr API App - https://localhost:5003
+3. TasksAPI - https://localhost:6010
+4. UsersAPI - https://localhost:6020
+5. TenantsAPI - https://localhost:6030
+6. IdentityAPI - https://localhost:6040
+7. LicensesAPI - https://localhost:6050

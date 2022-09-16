@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using TasksAPI.Context;
-using TasksAPI;
+using TenantsAPI.Context;
+using TenantsAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +16,13 @@ builder.Services.AddSwaggerGen();
 
 {
     var services = builder.Services;
-    services.AddDbContext<TasksContext>();
+    services.AddDbContext<TenantsContext>();
     services.AddSwaggerGen((config) =>
     {
         config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
         {
-            Title = "TasksAPI",
-            Description = "API returning tasks and their properties.",
+            Title = "TenantsAPI",
+            Description = "API returning tenants and their properties.",
             Version = "v1"
         });
         config.OperationFilter<ODataOperationFilter>();
@@ -64,7 +64,7 @@ builder.Services.AddAuthentication(options =>
     {
         options.Authority = "https://localhost:6040";
         options.RequireHttpsMetadata = false;
-        options.Audience = "tasks.api";
+        options.Audience = "tenants.api";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateAudience = true

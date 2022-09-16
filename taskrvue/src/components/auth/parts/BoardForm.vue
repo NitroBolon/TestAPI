@@ -1,5 +1,6 @@
 <template>
-    <a-checkbox>Enable notifications</a-checkbox>
+    <a-checkbox>Initialize with demo content</a-checkbox>
+    
 </template>
 
 <script lang="ts">

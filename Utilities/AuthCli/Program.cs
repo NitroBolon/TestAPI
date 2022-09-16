@@ -4,7 +4,7 @@
 using IdentityModel.Client;
 
 var client = new HttpClient();
-var disco = await client.GetDiscoveryDocumentAsync("https://localhost:5001");
+var disco = await client.GetDiscoveryDocumentAsync("https://localhost:6040");
 if (disco.IsError)
 {
     Console.WriteLine(disco.Error);
@@ -18,7 +18,7 @@ var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCr
 
     ClientId = "test.superadmin",
     ClientSecret = "apisupertest",
-    Scope = "users.api tasks.api"
+    Scope = "users.api tasks.api tenants.api licenses.api"
 });
 
 if (tokenResponse.IsError)

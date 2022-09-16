@@ -88,9 +88,8 @@
           formStateBool.pass = false;
           return Promise.reject('Please input the password');
         } else {
-          if (formState.checkPass !== '') {
-            // eslint-disable-next-line
-          formStateBool.pass = false;
+          if (formState.checkPass !== '' && formRef && formRef.value) {
+            formStateBool.pass = false;
             formRef.value.validateFields('checkPass');
           }
           formStateBool.pass = true;
