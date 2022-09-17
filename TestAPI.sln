@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "taskrweb", "taskrweb\taskrw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TenantsAPI", "Services\TenantsAPI\TenantsAPI.csproj", "{8ADF11A8-2F89-4D56-A763-44F13B1A2DB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicensesAPI", "Services\LicensesAPI\LicensesAPI.csproj", "{749A3CDC-9E80-49A0-891F-09FB0876E25F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LicensesAPI", "Services\LicensesAPI\LicensesAPI.csproj", "{749A3CDC-9E80-49A0-891F-09FB0876E25F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseUpdater", "Utilities\DatabaseUpdater\DatabaseUpdater.csproj", "{90BDA017-6CBB-41A1-B3B8-710F05BC5447}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{749A3CDC-9E80-49A0-891F-09FB0876E25F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{749A3CDC-9E80-49A0-891F-09FB0876E25F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{749A3CDC-9E80-49A0-891F-09FB0876E25F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90BDA017-6CBB-41A1-B3B8-710F05BC5447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90BDA017-6CBB-41A1-B3B8-710F05BC5447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90BDA017-6CBB-41A1-B3B8-710F05BC5447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90BDA017-6CBB-41A1-B3B8-710F05BC5447}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{C2A81A0A-E316-4CDA-89F2-3E980ED53FC1} = {86339B68-E8BE-40DD-84FE-2B085D7D01FB}
 		{8ADF11A8-2F89-4D56-A763-44F13B1A2DB9} = {86339B68-E8BE-40DD-84FE-2B085D7D01FB}
 		{749A3CDC-9E80-49A0-891F-09FB0876E25F} = {86339B68-E8BE-40DD-84FE-2B085D7D01FB}
+		{90BDA017-6CBB-41A1-B3B8-710F05BC5447} = {45F1EE1C-0F1C-4458-BBB5-EEABB7F1E63E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9DF2D84B-13FB-4155-964F-C9C0D4002AFF}
