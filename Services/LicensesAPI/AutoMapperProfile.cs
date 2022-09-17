@@ -7,7 +7,7 @@ namespace LicensesAPI
     {
         public AutoMapperProfile()
         {
-
+            CreateMap<LicenseType, LicenseTypeDto>();
         }
     }
 }

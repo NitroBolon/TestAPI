@@ -4,6 +4,7 @@ using LicensesAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LicensesAPI.Migrations
 {
     [DbContext(typeof(LicensesContext))]
-    partial class LicensesContextModelSnapshot : ModelSnapshot
+    [Migration("20220917153531_AddLicenseUser")]
+    partial class AddLicenseUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace LicensesAPI.Migrations
                     b.Property<long>("TenantId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TypeId")
+                    b.Property<long>("TypeId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -55,10 +57,8 @@ namespace LicensesAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsOfferActive")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PriceMonth")
@@ -98,7 +98,9 @@ namespace LicensesAPI.Migrations
                 {
                     b.HasOne("LicensesAPI.Models.LicenseType", "Type")
                         .WithMany()
-                        .HasForeignKey("TypeId");
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Type");
                 });

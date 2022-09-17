@@ -5,7 +5,8 @@
     </a-layout-header>
     <a-layout-content style="min-height: 1000px">
       <img alt="Vue logo" src="./assets/logo.png">
-      <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/></a-layout-content>
+      <HomePage></HomePage>
+    </a-layout-content>
     <a-layout-footer>
       <FooterBottom></FooterBottom>
     </a-layout-footer>
@@ -14,16 +15,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
 import HeaderTop from './components/general/HeaderTop.vue';
 import FooterBottom from './components/general/FooterBottom.vue';
+import HomePage from './components/general/HomePage.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld,
     HeaderTop,
-    FooterBottom
+    FooterBottom,
+    HomePage
 }
 });
 </script>
@@ -40,10 +41,14 @@ export default defineComponent({
   background: rgb(139, 38, 38) !important;
   color: white !important;
   position: sticky;
+  z-index: 5;
   top: 0;
 }
 .ant-layout-content {
-  
+  width: 75%;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 .ant-layout-footer {
   background: rgb(61, 61, 61) !important;

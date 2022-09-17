@@ -26,6 +26,10 @@ module.exports = {
         proxy: {
             '^/weatherforecast': {
                 target: 'https://localhost:5003/'
+            },
+            '^/fetchLicenses': {
+                target: 'https://localhost:6050/',
+                pathRewrite: {'^/fetchLicenses' : '/v1/LicenseTypes'}
             }
         },
         port: 5002

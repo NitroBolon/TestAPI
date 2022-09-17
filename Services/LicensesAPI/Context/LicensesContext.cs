@@ -24,8 +24,10 @@ public class LicensesContext : DbContext
         modelBuilder.Entity<License>()
             .HasOne(p => p.Type);
         modelBuilder.Entity<LicenseType>();
+        modelBuilder.Entity<LicenseUser>();
     }
 
     public DbSet<License> Licenses { get; set; }
     public DbSet<LicenseType> LicenseTypes { get; set; }
+    public DbSet<LicenseUser> LicenseUsers { get; set; }
 }
