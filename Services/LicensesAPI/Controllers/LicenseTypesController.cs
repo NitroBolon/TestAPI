@@ -28,14 +28,14 @@ namespace LicensesAPI.Controllers
         [HttpGet(Name = "GetLicenseTypes")]
         public IEnumerable<LicenseTypeDto> Get()
         {
-            return _context.LicenseTypes.AsNoTracking().Where(lt => lt.IsOfferActive).Select(lt => _mapper.Map<LicenseTypeDto>(lt));
+            return _context.LicenseTypes.AsNoTracking().Where(lt => lt.IsOfferActive).OrderBy(lt => lt.Priority).Select(lt => _mapper.Map<LicenseTypeDto>(lt));
         }
 
         [Authorize]
         [HttpPost("PostLicenseType")]
         public IActionResult Post([FromBody] LicenseTypePostDto licenseType)
         {
-            if (licenseType == null || string.IsNullOrWhiteSpace(licenseType.Name) || licenseType.ValidMonths < 1 || licenseType.PriceMonth < 1)
+            if (licenseType == null || string.IsNullOrWhiteSpace(licenseType.Name) || licenseType.ValidMonths < 1 || licenseType.PriceMonth < 0 || licenseType.Priority < 0)
             {
                 return BadRequest();
             }
@@ -45,6 +45,8 @@ namespace LicensesAPI.Controllers
                 Name = licenseType.Name,
                 ValidMonths = licenseType.ValidMonths,
                 PriceMonth = licenseType.PriceMonth,
+                Priority = licenseType.Priority,
+                Subscriptions = licenseType.Subscriptions,
                 IsOfferActive = false
             });
             _context.SaveChanges();

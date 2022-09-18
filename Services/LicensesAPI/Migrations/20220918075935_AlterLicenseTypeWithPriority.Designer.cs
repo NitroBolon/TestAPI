@@ -4,6 +4,7 @@ using LicensesAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LicensesAPI.Migrations
 {
     [DbContext(typeof(LicensesContext))]
-    partial class LicensesContextModelSnapshot : ModelSnapshot
+    [Migration("20220918075935_AlterLicenseTypeWithPriority")]
+    partial class AlterLicenseTypeWithPriority
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
